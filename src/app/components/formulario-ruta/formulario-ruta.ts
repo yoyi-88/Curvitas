@@ -30,7 +30,7 @@ export class FormularioRuta {
       this.cargando = true;
       this.rutaGenerada = null;
 
-      this.http.post('https://curvitasbackend-production.up.railway.app/', this.formularioRuta.value)
+      this.http.post('https://curvitasbackend-production.up.railway.app/api/plan-route', this.formularioRuta.value)
         .subscribe({
           next: (response: any) => {
             this.rutaGenerada = response;
