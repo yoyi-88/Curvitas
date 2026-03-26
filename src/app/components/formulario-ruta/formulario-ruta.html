@@ -1,26 +1,50 @@
 <div class="form-container">
-  <h2>Planificador de Rutas Moteras 🏍️</h2>
+  <h2>RUTAS MOTERAS 🏍️</h2>
   
   <form [formGroup]="formularioRuta" (ngSubmit)="onSubmit()">
     <div class="input-group">
-      <label for="origen">Punto de Partida:</label>
+      <label for="origen">Punto de Partida</label>
       <input id="origen" type="text" formControlName="origen" placeholder="Ej: Madrid">
     </div>
 
     <div class="input-group">
-      <label for="destino">Destino Final:</label>
-      <input id="destino" type="text" formControlName="destino" placeholder="Ej: Cuenca">
+      <label for="destino">Destino Final</label>
+      <input id="destino" type="text" formControlName="destino" placeholder="Ej: Valencia">
     </div>
 
     <div class="input-group">
-      <label>Tipo de ruta:</label>
+      <label>Estilo de ruta</label>
       <select formControlName="intensidad">
-        <option value="scenic">Paisajística (Tranquila)</option>
-        <option value="curvy">Muy Revirada (Curvas)</option>
-        <option value="adventure">Aventura (Carreteras secundarias)</option>
+        <option value="scenic">📸 Paisajística (Tranquila)</option>
+        <option value="curvy">🐍 Modo Curvas (Deportiva)</option>
+        <option value="adventure">🗺️ Aventura (Secundarias)</option>
       </select>
     </div>
 
-    <button type="submit" [disabled]="formularioRuta.invalid">Generar Ruta Mágica</button>
+    <button type="submit" [disabled]="formularioRuta.invalid || cargando">
+      {{ cargando ? 'Calculando...' : 'Generar Ruta Mágica' }}
+    </button>
   </form>
+
+  <!-- SECCIÓN DE CARGA -->
+  <div *ngIf="cargando" class="loading-text">
+    <p>Trazando curvas y evitando autovías...</p>
+  </div>
+
+  <!-- SECCIÓN DEL RESULTADO -->
+  <div *ngIf="rutaGenerada && !cargando" class="resultado-card">
+    <h3>¡Tu ruta está lista!</h3>
+    <p><strong>El veredicto experto:</strong><br> {{ rutaGenerada.explanation }}</p>
+    
+    <div *ngIf="rutaGenerada.waypoints.length > 0">
+      <h4>Puntos de control:</h4>
+      <ul>
+        <li *ngFor="let punto of rutaGenerada.waypoints">{{ punto }}</li>
+      </ul>
+    </div>
+
+    <a [href]="urlMapa" target="_blank" class="btn-maps">
+      📍 Abrir ruta en Google Maps
+    </a>
+  </div>
 </div>

@@ -1,0 +1,128 @@
+.form-container {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 500px; /* Tamaño máximo en PC */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input, select {
+  background-color: #2a2a2a;
+  border: 1px solid #3f3f3f;
+  color: white;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Estilo del botón principal */
+button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover:not([disabled]) {
+  background-color: var(--primary-hover);
+}
+
+button:active:not([disabled]) {
+  transform: scale(0.98); /* Pequeño efecto de pulsación */
+}
+
+button[disabled] {
+  background-color: #444;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* --- ESTILOS DE LOS RESULTADOS --- */
+.resultado-card {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #252525;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 8px 8px 0;
+}
+
+.resultado-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.resultado-card ul {
+  margin-left: 20px;
+  margin-top: 10px;
+  color: var(--text-muted);
+}
+
+.resultado-card li {
+  margin-bottom: 5px;
+}
+
+.btn-maps {
+  display: block;
+  text-align: center;
+  background-color: #4285F4; /* Azul Google */
+  color: white;
+  padding: 15px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-maps:hover {
+  background-color: #3367D6;
+}
+
+.loading-text {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--primary-color);
+  font-weight: 600;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}

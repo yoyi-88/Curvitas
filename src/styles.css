@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importamos una fuente moderna de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+/* Variables de color para usarlas en toda la app */
+:root {
+  --bg-color: #121212;        /* Fondo principal oscuro */
+  --card-bg: #1e1e1e;         /* Fondo de los formularios/tarjetas */
+  --text-main: #ffffff;       /* Texto blanco */
+  --text-muted: #a0a0a0;      /* Texto secundario grisáceo */
+  --primary-color: #ff5722;   /* Naranja motero (puedes cambiarlo a #4CAF50 para verde) */
+  --primary-hover: #e64a19;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
