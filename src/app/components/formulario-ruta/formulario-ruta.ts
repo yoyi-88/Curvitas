@@ -55,17 +55,21 @@ export class FormularioRuta {
   }
 
   // Función que fabrica el enlace
-  // Cambiamos el tipo de string[] a any[] porque ahora son objetos
   construirUrlMapa(origen: string, destino: string, waypoints: string[]): string {
+    // Usamos la URL estándar de Google Maps para navegación
     const baseUrl = 'https://www.google.com/maps/dir/?api=1';
+    
     const origenUrl = encodeURIComponent(origen);
     const destinoUrl = encodeURIComponent(destino);
     
     let url = `${baseUrl}&origin=${origenUrl}&destination=${destinoUrl}&travelmode=driving`;
 
-    if (waypoints && waypoints.length > 0) {
-      // encodeURIComponent directamente del string
-      const waypointsJuntos = waypoints.map(wp => encodeURIComponent(wp)).join('|');
+    // Verificamos que sea un array y tenga contenido
+    if (Array.isArray(waypoints) && waypoints.length > 0) {
+      // Unimos los nombres de los pueblos con el símbolo pipe (|)
+      const waypointsJuntos = waypoints
+        .map(wp => encodeURIComponent(String(wp))) // Nos aseguramos de que sea texto
+        .join('|');
       url += `&waypoints=${waypointsJuntos}`;
     }
 
