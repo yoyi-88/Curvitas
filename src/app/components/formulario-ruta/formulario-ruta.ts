@@ -55,17 +55,16 @@ export class FormularioRuta {
 
   // Función que fabrica el enlace
   // Cambiamos el tipo de string[] a any[] porque ahora son objetos
-  construirUrlMapa(origen: string, destination: string, waypoints: any[]): string {
+  construirUrlMapa(origen: string, destino: string, waypoints: string[]): string {
     const baseUrl = 'https://www.google.com/maps/dir/?api=1';
-
     const origenUrl = encodeURIComponent(origen);
-    const destinoUrl = encodeURIComponent(destination);
-
+    const destinoUrl = encodeURIComponent(destino);
+    
     let url = `${baseUrl}&origin=${origenUrl}&destination=${destinoUrl}&travelmode=driving`;
 
     if (waypoints && waypoints.length > 0) {
-      // IMPORTANTE: Extraemos solo la propiedad .coords de cada objeto
-      const waypointsJuntos = waypoints.map(wp => wp.coords).join('|');
+      // encodeURIComponent directamente del string
+      const waypointsJuntos = waypoints.map(wp => encodeURIComponent(wp)).join('|');
       url += `&waypoints=${waypointsJuntos}`;
     }
 
