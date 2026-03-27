@@ -70,4 +70,22 @@ export class FormularioRuta {
 
     return url;
   }
+
+  obtenerUbicacion() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Extraemos latitud y longitud y las ponemos en el formulario
+          const coords = `${position.coords.latitude},${position.coords.longitude}`;
+          this.formularioRuta.patchValue({ origen: coords });
+        },
+        (error) => {
+          console.error("Error obteniendo ubicación", error);
+          alert("No pudimos acceder a tu ubicación. Por favor, escríbela manualmente.");
+        }
+      );
+    } else {
+      alert("Tu navegador no soporta la geolocalización.");
+    }
+  }
 }
