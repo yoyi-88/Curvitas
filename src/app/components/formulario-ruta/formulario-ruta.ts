@@ -21,7 +21,8 @@ export class FormularioRuta {
     this.formularioRuta = this.fb.group({
       origen: ['', [Validators.required, Validators.minLength(3)]],
       destino: ['', [Validators.required, Validators.minLength(3)]],
-      intensidad: ['curvy']
+      intensidad: ['curvy'],
+      duracion: ['media']
     });
   }
 

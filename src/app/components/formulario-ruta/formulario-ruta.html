@@ -1,6 +1,6 @@
 <div class="form-container">
   <h2>RUTAS MOTERAS 🏍️</h2>
-  
+
   <form [formGroup]="formularioRuta" (ngSubmit)="onSubmit()">
     <div class="input-group">
       <label for="origen">Punto de Partida</label>
@@ -21,6 +21,15 @@
       </select>
     </div>
 
+    <div class="input-group">
+      <label>Duración / Nivel de desvío</label>
+      <select formControlName="duracion">
+        <option value="corta">⏱️ Directa (Prioriza llegar, pero por secundarias)</option>
+        <option value="media">⚖️ Equilibrada (Desvíos moderados)</option>
+        <option value="larga">🌅 Día completo (Ruta muy larga y enrevesada)</option>
+      </select>
+    </div>
+
     <button type="submit" [disabled]="formularioRuta.invalid || cargando">
       {{ cargando ? 'Calculando...' : 'Generar Ruta Mágica' }}
     </button>
@@ -35,7 +44,7 @@
   <div *ngIf="rutaGenerada && !cargando" class="resultado-card">
     <h3>¡Tu ruta está lista!</h3>
     <p><strong>El veredicto experto:</strong><br> {{ rutaGenerada.explanation }}</p>
-    
+
     <div *ngIf="rutaGenerada.waypoints.length > 0">
       <h4>Puntos de control:</h4>
       <ul>
