@@ -126,3 +126,27 @@ button[disabled] {
   50% { opacity: 1; }
   100% { opacity: 0.5; }
 }
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 20px; /* Reducimos el espacio interno para ganar sitio */
+    border-radius: 0; /* En móvil queda mejor que ocupe todo el ancho */
+    box-shadow: none;
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Texto un poco más pequeño */
+    margin-bottom: 20px;
+  }
+
+  input, select, button {
+    font-size: 16px; /* Evita que iOS haga zoom automático al pulsar inputs */
+    padding: 12px;
+  }
+
+  /* Ajuste específico para el grupo del buscador GPS */
+  .input-group div {
+    gap: 5px !important;
+  }
+}

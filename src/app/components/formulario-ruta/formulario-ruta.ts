@@ -16,6 +16,7 @@ export class FormularioRuta {
   rutaGenerada: any = null;
   urlMapa: string = '';
   cargando: boolean = false;
+  mensajeError: string = '';
 
   constructor(private fb: FormBuilder, private http: HttpClient, private cdr: ChangeDetectorRef) {
     this.formularioRuta = this.fb.group({
@@ -81,7 +82,7 @@ export class FormularioRuta {
         },
         (error) => {
           console.error("Error obteniendo ubicación", error);
-          alert("No pudimos acceder a tu ubicación. Por favor, escríbela manualmente.");
+          this.mensajeError = "Illo; pa' se' sincero algo no ha io como debería, inténtalo en un ratillo ¿no?";
         }
       );
     } else {
