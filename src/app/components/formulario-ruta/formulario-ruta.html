@@ -48,7 +48,8 @@
     <div *ngIf="rutaGenerada.waypoints.length > 0">
       <h4>Puntos de control:</h4>
       <ul>
-        <li *ngFor="let punto of rutaGenerada.waypoints">{{ punto }}</li>
+        <!-- Cambiamos {{ punto }} por {{ punto.name }} -->
+        <li *ngFor="let punto of rutaGenerada.waypoints">{{ punto.name }}</li>
       </ul>
     </div>
 

@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormularioRuta {
   formularioRuta: FormGroup;
-  
+
   // Nuevas variables para guardar el estado
   rutaGenerada: any = null;
   urlMapa: string = '';
@@ -36,14 +36,14 @@ export class FormularioRuta {
           next: (response: any) => {
             this.rutaGenerada = response;
             this.urlMapa = this.construirUrlMapa(
-                this.formularioRuta.value.origen, 
-                this.formularioRuta.value.destino, 
-                response.waypoints
+              this.formularioRuta.value.origen,
+              this.formularioRuta.value.destino,
+              response.waypoints
             );
             this.cargando = false;
 
             // 3. ¡LA MAGIA! Forzamos a Angular a mirar los cambios
-            this.cdr.detectChanges(); 
+            this.cdr.detectChanges();
           },
           error: (err) => {
             this.cargando = false;
@@ -54,18 +54,18 @@ export class FormularioRuta {
   }
 
   // Función que fabrica el enlace
-  construirUrlMapa(origen: string, destino: string, waypoints: string[]): string {
+  // Cambiamos el tipo de string[] a any[] porque ahora son objetos
+  construirUrlMapa(origen: string, destination: string, waypoints: any[]): string {
     const baseUrl = 'https://www.google.com/maps/dir/?api=1';
-    
-    // Limpiamos los textos (espacios, tildes, etc.)
+
     const origenUrl = encodeURIComponent(origen);
-    const destinoUrl = encodeURIComponent(destino);
-    
+    const destinoUrl = encodeURIComponent(destination);
+
     let url = `${baseUrl}&origin=${origenUrl}&destination=${destinoUrl}&travelmode=driving`;
 
-    // Si hay waypoints, los unimos con "|"
     if (waypoints && waypoints.length > 0) {
-      const waypointsJuntos = waypoints.map(wp => encodeURIComponent(wp)).join('|');
+      // IMPORTANTE: Extraemos solo la propiedad .coords de cada objeto
+      const waypointsJuntos = waypoints.map(wp => wp.coords).join('|');
       url += `&waypoints=${waypointsJuntos}`;
     }
 
